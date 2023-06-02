@@ -15,6 +15,10 @@ set noshowmode
 set encoding=UTF-8
 set nocompatible
 set termguicolors
+set timeout
+set timeoutlen=300
+set updatetime=250
+set signcolumn=yes
 syntax on
 
 " Set the cursor shape 
@@ -28,17 +32,62 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" VIM-PLUGINS
 call plug#begin('~/vim/plugged')
-    Plug 'joshdick/onedark.vim'
+    " FILETREE
+    Plug 'scrooloose/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+
+    " VIMLINE
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+
+    " FUZZY FINDER
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+
+    " VIM LANGUAGE PACK
     Plug 'sheerun/vim-polyglot'
-    Plug 'sainnhe/sonokai'
+
+    " GIT TOOL
     Plug 'tpope/vim-fugitive'
+
+    " GIT SIGN
+    Plug 'airblade/vim-gitgutter'
+
+    " AUTO PAIRS & AUTO CLOSETAG
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'alvan/vim-closetag'
+
+    " ADJUSTS 'SHIFTWIDTH' AND 'EXPANDTAB' AUTOMATICALLY 
+    Plug 'tpope/vim-sleuth'
+
+    " PLUGIN FOR ICONS
+    Plug 'ryanoasis/vim-devicons'
+
+    " COLORSCHEMES
+    Plug 'joshdick/onedark.vim'
+    Plug 'sainnhe/sonokai'
+    Plug 'morhetz/gruvbox'
+
 call plug#end()
 
 " VIM SONOKAI CONFIG
-colorscheme sonokai
+" colorscheme sonokai
+
+" VIM GRUVBOX CONFIG
+colorscheme gruvbox
+set background=dark
+
+" g:gruvbox_contrast = hard | medium | soft
+let g:gruvbox_contrast_dark = 'medium'
+
+" g:gruvbox_transparent_bg = 0 | 1 
+let g:gruvbox_transparent_bg = 1
+
+" VIM ONEDARK CONFIG
+let g:onedark_termcolors=256
+" colorscheme onedark
 
 " VIM AIRLINE CONFIG
 if !exists('g:airline_symbols')
@@ -54,10 +103,15 @@ let g:airline_symbols.linenr = ' :'
 let g:airline_symbols.maxlinenr = '☰ '
 let g:airline_symbols.dirty=''
 
-" VIM ONEDARK CONFIG
-let g:onedark_termcolors=256
-" colorscheme onedark
+" VIM AUTO CLOSETAG CONFIG
+let g:closetag_filenames = '*.html,*.jsx,*.tsx'
+let g:closetag_filetypes = 'html,jsx,tsx'
 
+" VIM NERDTREE CONFIG
+nnoremap <Leader>e :NERDTreeToggle<CR>
+
+" VIM FZF CONFIG
+nnoremap <Leader><Space> :Buffers<CR>
 
 " VIM ON TMUX COLOR CONFIG
 if (empty($TMUX))
