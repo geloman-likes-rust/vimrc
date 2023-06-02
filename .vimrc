@@ -14,11 +14,8 @@ set nohlsearch
 set noshowmode
 set encoding=UTF-8
 set nocompatible
-
-" SET THEME
-syntax on
-colorscheme onedark
 set termguicolors
+syntax on
 
 " Set the cursor shape 
 let &t_SI = "\<Esc>[6 q"
@@ -32,18 +29,35 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/vim/plugged')
-"    Plug 'navarasu/onedark.nvim'
     Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'sheerun/vim-polyglot'
+    Plug 'sainnhe/sonokai'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
+" VIM SONOKAI CONFIG
+colorscheme sonokai
+
 " VIM AIRLINE CONFIG
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
 let g:airline_theme='onedark'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ' :'
+let g:airline_symbols.maxlinenr = '☰ '
+let g:airline_symbols.dirty=''
 
 " VIM ONEDARK CONFIG
 let g:onedark_termcolors=256
+" colorscheme onedark
+
 
 " VIM ON TMUX COLOR CONFIG
 if (empty($TMUX))
