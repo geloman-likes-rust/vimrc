@@ -28,7 +28,7 @@ nnoremap G Gzz
 nnoremap H Hzz
 nnoremap L Lzz
 
-" Set the cursor shape 
+" Set the cursor shape
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
@@ -72,7 +72,7 @@ call plug#begin('~/vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'alvan/vim-closetag'
 
-    " ADJUSTS 'SHIFTWIDTH' AND 'EXPANDTAB' AUTOMATICALLY 
+    " ADJUSTS 'SHIFTWIDTH' AND 'EXPANDTAB' AUTOMATICALLY
     Plug 'tpope/vim-sleuth'
 
     " PLUGIN FOR ICONS
@@ -80,35 +80,30 @@ call plug#begin('~/vim/plugged')
 
     " COLORSCHEMES
     Plug 'joshdick/onedark.vim'
-    Plug 'sainnhe/sonokai'
-    Plug 'morhetz/gruvbox'
 
     " FORMAT ON SAVE (PRETTIER)
     Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 
-    call plug#end()
-
-" VIM SONOKAI CONFIG
-" colorscheme sonokai
-
-
-
-" VIM GRUVBOX CONFIG
-colorscheme gruvbox
-set background=dark
-
-" g:gruvbox_contrast = hard | medium | soft
-let g:gruvbox_contrast_dark = 'medium'
-
-" g:gruvbox_transparent_bg = 0 | 1 
-let g:gruvbox_transparent_bg = 1
+call plug#end()
 
 
 
 " VIM ONEDARK CONFIG
-let g:onedark_termcolors=256
-" colorscheme onedark
+let g:onedark_color_overrides = {
+  \ "red": { "gui": "#f65866", "cterm": "204", "cterm16": "1" },
+  \ "dark_red": { "gui": "#992525", "cterm": "196", "cterm16": "9" },
+  \ "green": { "gui": "#8bcd5b", "cterm": "114", "cterm16": "2" },
+  \ "yellow": { "gui": "#efbd5d", "cterm": "180", "cterm16": "3" },
+  \ "dark_yellow": { "gui": "#8f610d", "cterm": "173", "cterm16": "11" },
+  \ "blue": { "gui": "#41a7fc", "cterm": "39", "cterm16": "4" },
+  \ "purple": { "gui": "#c75ae8", "cterm": "170", "cterm16": "5" },
+  \ "cyan": { "gui": "#34bfd0", "cterm": "38", "cterm16": "6" },
+  \ "black": { "gui": "#0c0e15", "cterm": "235", "cterm16": "0" },
+  \ "foreground": { "gui": "#93a4c3", "cterm": "145", "cterm16": "NONE" },
+  \ "background": { "gui": "#1f2329", "cterm": "235", "cterm16": "NONE" }
+\}
 
+colorscheme onedark
 
 
 " VIM AIRLINE CONFIG
@@ -172,7 +167,7 @@ endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" coc-lsp 
+" coc-lsp
 let g:coc_global_extensions = [
     \'coc-css',
     \'coc-emmet',
