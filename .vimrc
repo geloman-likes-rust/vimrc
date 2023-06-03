@@ -44,6 +44,7 @@ call plug#begin('~/vim/plugged')
     " FILETREE
     Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
     " AUTOCOMPLETION
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -54,10 +55,6 @@ call plug#begin('~/vim/plugged')
     " VIMLINE
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-
-    " FUZZY FINDER
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
 
     " VIM LANGUAGE PACK
     Plug 'sheerun/vim-polyglot'
@@ -84,6 +81,9 @@ call plug#begin('~/vim/plugged')
     " FORMAT ON SAVE (PRETTIER)
     Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 
+    " COLORIZER
+    Plug 'lilydjwg/colorizer'
+
 call plug#end()
 
 
@@ -100,7 +100,7 @@ let g:onedark_color_overrides = {
   \ "cyan": { "gui": "#34bfd0", "cterm": "38", "cterm16": "6" },
   \ "black": { "gui": "#0c0e15", "cterm": "235", "cterm16": "0" },
   \ "foreground": { "gui": "#93a4c3", "cterm": "145", "cterm16": "NONE" },
-  \ "background": { "gui": "#1f2329", "cterm": "235", "cterm16": "NONE" }
+  \ "background": { "gui": "#21283b", "cterm": "235", "cterm16": "NONE" }
 \}
 
 colorscheme onedark
@@ -179,13 +179,7 @@ let g:coc_global_extensions = [
 
 
 " VIM NERDTREE CONFIG
-nnoremap <Leader>e :NERDTreeToggle<CR>
-
-
-
-" VIM FZF CONFIG
-nnoremap <Leader><Space> :Buffers<CR>
-nnoremap <Leader>sf :Files<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
 
 
 
@@ -202,6 +196,7 @@ nnoremap <leader>gs :Gvdiffsplit<CR>
 " VIM FORMATTER CONFIG
 let g:prettier#quickfix_enabled = 0
 autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+
 
 
 " VIM ON TMUX COLOR CONFIG
