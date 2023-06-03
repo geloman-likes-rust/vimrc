@@ -148,8 +148,7 @@ endfunction
 " goto code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gI <Plug>(coc-implementation)
 
 " Rename variable
 nmap <leader>rn <Plug>(coc-rename)
@@ -208,22 +207,3 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-
-
-
-" CUSTOM TAB SPACES
-filetype plugin indent on
-au BufNewFile,BufRead *.tsx, *.js, *.jsx, *.json, *.md, *.html, *.css, *.graphql, *.gql
-    \ setlocal tabstop=2 |
-    \ setlocal softtabstop=2 |
-    \ setlocal shiftwidth=2
-au BufNewFile,BufRead *.py
-    \ setlocal tabstop=4 |
-    \ setlocal softtabstop=4 |
-    \ setlocal shiftwidth=4 |
-    \ setlocal textwidth=79 |
-    \ setlocal expandtab |
-    \ setlocal autoindent |
-    \ setlocal fileformat=unix
-highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
