@@ -27,6 +27,7 @@ syntax on
 nnoremap G Gzz
 nnoremap H Hzz
 nnoremap L Lzz
+set noshowmode
 
 " Set the cursor shape
 let &t_SI = "\<Esc>[6 q"
@@ -89,6 +90,7 @@ call plug#end()
 
 
 " VIM ONEDARK CONFIG
+let g:onedark_termcolors=256
 let g:onedark_color_overrides = {
   \ "red": { "gui": "#f65866", "cterm": "204", "cterm16": "1" },
   \ "dark_red": { "gui": "#992525", "cterm": "196", "cterm16": "9" },
@@ -119,9 +121,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ' :'
 let g:airline_symbols.maxlinenr = '☰ '
 let g:airline_symbols.dirty=''
-" let g:airline_extensions = ['branch', 'tabline']
-let g:airline#extensions#battery#enabled = 0
-let g:airline#extensions#bookmark#enabled = 0
 
 
 
