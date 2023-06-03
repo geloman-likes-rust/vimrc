@@ -50,6 +50,10 @@ call plug#begin('~/.vim/plugged')
     " AUTOCOMPLETION
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    " FUZZY FINDER
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+
     " VIMLINE
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -99,18 +103,11 @@ let g:onedark_color_overrides = {
   \ "cyan": { "gui": "#34bfd0", "cterm": "38", "cterm16": "6" },
   \ "black": { "gui": "#0c0e15", "cterm": "235", "cterm16": "0" },
   \ "foreground": { "gui": "#93a4c3", "cterm": "145", "cterm16": "NONE" },
-  \ "background": { "gui": "#21283b", "cterm": "235", "cterm16": "NONE" }
+  \ "background": { "gui": "#1a212e", "cterm": "235", "cterm16": "NONE" },
 \}
 
-"   \ "comment_grey": get(s:overrides, "comment_grey", { "gui": "#5C6370", "cterm": "59", "cterm16": "7" }),
-"   \ "gutter_fg_grey": get(s:overrides, "gutter_fg_grey", { "gui": "#4B5263", "cterm": "238", "cterm16": "8" }),
-"   \ "cursor_grey": get(s:overrides, "cursor_grey", { "gui": "#2C323C", "cterm": "236", "cterm16": "0" }),
-"   \ "visual_grey": get(s:overrides, "visual_grey", { "gui": "#3E4452", "cterm": "237", "cterm16": "8" }),
-"   \ "menu_grey": get(s:overrides, "menu_grey", { "gui": "#3E4452", "cterm": "237", "cterm16": "7" }),
-"   \ "special_grey": get(s:overrides, "special_grey", { "gui": "#3B4048", "cterm": "238", "cterm16": "7" }),
-"   \ "vertsplit": get(s:overrides, "vertsplit", { "gui": "#3E4452", "cterm": "59", "cterm16": "7" }),
-
 colorscheme onedark
+
 
 
 " VIM AIRLINE CONFIG
@@ -149,7 +146,7 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" goto code navigation
+" Goto code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gI <Plug>(coc-implementation)
@@ -192,8 +189,22 @@ nnoremap <leader>gs :Gvdiffsplit<CR>
 
 
 " VIM FORMATTER CONFIG
-let g:prettier#quickfix_enabled = 0
-autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#exec_cmd_async = 1
+
+
+
+" VIM FUZZY FINDER CONFIG
+nnoremap <leader>sf :Files<CR>
+nnoremap <leader><space> :Buffers<CR>
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS="--ansi --layout reverse --margin=1,4"
+let $FZF_DEFAULT_OPTS='
+  \ --color=fg:#a0a8b7,bg:#1a212e,hl:#af5fff
+  \ --color=fg+:#1a212e,bg+:#a0a8b7,hl+:#d7005f
+  \ --color=info:#afaf87,prompt:#4fa6ed,pointer:#d7005f
+  \ --color=spinner:#af5fff'
 
 
 
