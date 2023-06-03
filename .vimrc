@@ -71,6 +71,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'alvan/vim-closetag'
 
+    " HIGHLIGHT MATCHTAGS
+    Plug 'leafOfTree/vim-matchtag'
+
     " ADJUSTS 'SHIFTWIDTH' AND 'EXPANDTAB' AUTOMATICALLY
     Plug 'tpope/vim-sleuth'
 
@@ -205,6 +208,11 @@ let $FZF_DEFAULT_OPTS='
   \ --color=fg+:#1a212e,bg+:#a0a8b7,hl+:#d7005f
   \ --color=info:#afaf87,prompt:#4fa6ed,pointer:#d7005f
   \ --color=spinner:#af5fff'
+
+
+let g:vim_matchtag_enable_by_default = 1
+let g:vim_matchtag_highlight_cursor_on = 1
+let g:vim_matchtag_files = '*.html,*.ts,*.tsx,*.js,*.jsx,*.vue,*.svelte,*.jsp'
 
 
 
