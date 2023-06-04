@@ -210,6 +210,8 @@ let $FZF_DEFAULT_OPTS='
   \ --color=spinner:#af5fff'
 
 
+
+" VIM MATCHTAGS CONFIG
 let g:vim_matchtag_enable_by_default = 1
 let g:vim_matchtag_highlight_cursor_on = 1
 let g:vim_matchtag_files = '*.html,*.ts,*.tsx,*.js,*.jsx,*.vue,*.svelte,*.jsp'
