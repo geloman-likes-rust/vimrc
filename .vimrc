@@ -227,3 +227,8 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+
+
+" Set language specific indentation
+autocmd FileType js,ts,html,css setlocal shiftwidth=2 softtabstop=2 tabstop=2
