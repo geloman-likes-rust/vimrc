@@ -20,19 +20,45 @@ set timeout
 set timeoutlen=300
 set updatetime=250
 set signcolumn=yes
-set backspace=indent,eol,start
 syntax on
-
-" My custom keymaps
-nnoremap G Gzz
-nnoremap H Hzz
-nnoremap L Lzz
 set noshowmode
 
 " Set the cursor shape
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+
+" Tweaks for file browsing
+let g:netrw_banner = 0 " disable explorer banner
+let g:netrw_altv = 1 " open in prior window
+let g:netrw_list_hide = netrw_gitignore#Hide() " hide all listed file in .gitignore
+let g:netrw_liststyle = 3 " explorer tree view
+
+" ----------------------------------------------
+" ----------- CUSTOM STATUS LINE ---------------
+" ----------------------------------------------
+highlight Dark guibg=#2a324a guifg=#93a4c3
+highlight LightGray guibg=#a0a8b7 guifg=#1A212E
+
+set statusline=
+set statusline+=\%#ModeMsg#\ %{WhatMode()}
+set statusline+=\ %#Dark#\ %F
+set statusline+=\%=
+set statusline+=\ %{WhatOS()}
+set statusline+=\ \|\ %{&fileencoding}\ \|
+set statusline+=\ %Y
+set statusline+=\ %#LightGray#\ buf:%n
+set statusline+=\ %#ModeMsg#\ %l:%L\
+
+" My custom keymaps
+nnoremap G Gzz
+nnoremap H Hzz
+nnoremap L Lzz
+
+" toggle filetree
+nnoremap <silent> <leader>e <esc>:Lex 20<cr>
+
+
 
 " Install vim-plug and all my plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -42,21 +68,12 @@ endif
 
 " VIM-PLUGINS
 call plug#begin('~/.vim/plugged')
-    " FILETREE
-    Plug 'scrooloose/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
     " AUTOCOMPLETION
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     " FUZZY FINDER
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-
-    " VIMLINE
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
 
     " VIM LANGUAGE PACK
     Plug 'sheerun/vim-polyglot'
@@ -181,10 +198,6 @@ let g:coc_global_extensions = [
 
 
 
-" VIM NERDTREE CONFIG
-nnoremap <leader>e :NERDTreeToggle<CR>
-
-
 
 " VIM FUGITIVE CONFIG
 nnoremap <leader>gs :Gvdiffsplit<CR>
@@ -202,6 +215,7 @@ let g:prettier#exec_cmd_async = 1
 nnoremap <leader>sf :Files<CR>
 nnoremap <leader><space> :Buffers<CR>
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.8 } }
+let g:fzf_preview_syntax_highlighting = 1
 let $FZF_DEFAULT_OPTS="--ansi --layout reverse --margin=1,4"
 let $FZF_DEFAULT_OPTS='
   \ --color=fg:#a0a8b7,bg:#1a212e,hl:#af5fff
@@ -229,6 +243,5 @@ if (empty($TMUX))
 endif
 
 
-
 " Set language specific indentation
-autocmd FileType js,ts,html,css setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType javascript,javascriptreact,typescriptreact,typescript,html,css setlocal shiftwidth=2 softtabstop=2 tabstop=2
